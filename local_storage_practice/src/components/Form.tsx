@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import type ToDoItem from "../types/type"
 
 interface FormProps {
     onAdd: (item:string, index:number) => void;

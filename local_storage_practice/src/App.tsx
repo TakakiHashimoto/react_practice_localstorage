@@ -13,8 +13,13 @@ import DeleteButton from "./components/DeleteButton";
 
 function App() {
  
-    const [toDoItem, setToDoItem] = useState<ToDoItem[]>([]);
+  // First check if there is any cached data in local storage and if there is, set that value as initial value, else, set empty array
+    const [toDoItem, setToDoItem] = useState<ToDoItem[]>(()=>{
+      const storedData = localStorage.getItem("todoItem");
+      return storedData? JSON.parse(storedData): [];
+    });
 
+    // Everytime an item is added to an array, store them in local storage. localStorage only accepts string = JSON.stringfy()
     useEffect(() => {
       localStorage.setItem("todoItem", JSON.stringify(toDoItem))
     }, [toDoItem]);
